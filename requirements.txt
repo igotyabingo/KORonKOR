@@ -1,0 +1,4 @@
+vanna
+chromadb
+pandas
+transformers
