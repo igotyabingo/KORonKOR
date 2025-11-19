@@ -10,12 +10,15 @@ class Hf(VannaBase):
             "model_name_or_path", None
         )  # e.g. meta-llama/Meta-Llama-3-8B-Instruct or local path to the model checkpoint files
         # list of quantization methods supported by transformers package: https://huggingface.co/docs/transformers/main/en/quantization/overview
-        quantization_config = self.config.get("quantization_config", None)
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            model_name_or_path,
+            trust_remote_code=True,
+            )
         self.model = AutoModelForCausalLM.from_pretrained(
             model_name_or_path,
-            quantization_config=quantization_config,
-            device_map="auto",
+            trust_remote_code=True,
+            low_cpu_mem_usage=False,
+            device_map="cuda",
         )
 
     def system_message(self, message: str) -> any:

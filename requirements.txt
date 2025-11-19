@@ -1,4 +1,15 @@
+python==3.12
+
 vanna
-chromadb
-pandas
-transformers
+chromadb<0.5
+numpy==1.26.4
+pandas==2.1.4
+transformers==4.36.2
+sqlalchemy==2.0.23
+pydantic==1.10.13
+
+# CPU // GPU
+torch>=2.1.0
+torchvision>=0.16.0
+torchaudio>=2.1.0
+
