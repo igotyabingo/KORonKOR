@@ -1,0 +1,39 @@
+{
+	"Dataset": {
+		"identifier": "TEXT_NL2SQL_2022",
+		"name": "자연어 기반 질의 검색 생성 데이터",
+		"src_path": "/dataSet/text/",
+		"label_path": "/dataSet/text/",
+		"category": 9,
+		"type": 0
+	},
+    "data": [
+        {
+			"db_id": "publicdata_education_390",
+			"utterance_id": "Whn_21049",
+			"hardness": "medium",
+			"utterance_type": "BR02",
+			"query": "SELECT APPLICATION_DATE, APPLICATION_TIME FROM APP_LIBRARY_CLUBS_BORYEONG_CHUNGNAM WHERE MEETING_NAME = '보령서향'",
+			"utterance": "이름이 보령서향인 모임의 동아리방 신청일과 신청 시간을 알려줘",
+			"values": [
+				{
+					"token": "보령서향",
+					"start": 4,
+					"column_index": 3
+				}
+			],
+			"cols": [
+				{
+					"token": "신청일",
+					"start": 19,
+					"column_index": 1
+				},
+				{
+					"token": "신청 시간",
+					"start": 24,
+					"column_index": 2
+				}
+			]
+		}
+    ]
+}

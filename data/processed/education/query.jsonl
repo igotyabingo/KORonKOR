@@ -1,0 +1,1 @@
+{"query_id": 1, "query": "이름이 보령서향인 모임의 동아리방 신청일과 신청 시간을 알려줘", "sql": "SELECT APPLICATION_DATE, APPLICATION_TIME FROM APP_LIBRARY_CLUBS_BORYEONG_CHUNGNAM WHERE MEETING_NAME = '보령서향'", "hardness": "medium", "db_id": "publicdata_education_390"}

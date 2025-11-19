@@ -1,0 +1,1 @@
+{"query_id": 1, "query": "강남 코엑스점보다 강북 힐튼점의 매출이 높거나 부산 롯데점이 8000000000원 이상인 날의 기준 일자를 강남 코엑스점의 매출이 높은 순서대로 찾아줘", "sql": "SELECT BASE_DATE FROM GRANDKOR_CASINO_NET_S WHERE GANGNAM_COEX_BRANCH > GANGBUK_HILTON_BRANCH OR BUSAN_LOTTE_BRANCH >= 8000000000 ORDER BY GANGNAM_COEX_BRANCH DESC", "hardness": "medium", "db_id": "publicdata_culture_791"}

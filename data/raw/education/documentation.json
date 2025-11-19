@@ -1,0 +1,84 @@
+{
+	"Dataset": {
+		"identifier": "TEXT_NL2SQL_2022",
+		"name": "자연어 기반 질의 검색 생성 데이터",
+		"src_path": "/dataSet/text/",
+		"label_path": "/dataSet/text/",
+		"category": 9,
+		"type": 0
+	},
+    "data": [
+        {
+			"source": "충청남도 보령시",
+			"db_id": "publicdata_education_390",
+			"table_names_original": [
+				"APP_LIBRARY_CLUBS_BORYEONG_CHUNGNAM"
+			],
+			"table_names": [
+				"충청남도 보령시 도서관동아리방신청정보"
+			],
+			"column_names_original": [
+				[
+					-1,
+					"*"
+				],
+				[
+					0,
+					"APPLICATION_DATE"
+				],
+				[
+					0,
+					"APPLICATION_TIME"
+				],
+				[
+					0,
+					"MEETING_NAME"
+				],
+				[
+					0,
+					"PURPOSE_OF_USE"
+				],
+				[
+					0,
+					"DATA_STANDARD_DATE"
+				]
+			],
+			"column_names": [
+				[
+					-1,
+					"*"
+				],
+				[
+					0,
+					"신청일"
+				],
+				[
+					0,
+					"신청시간"
+				],
+				[
+					0,
+					"모임명"
+				],
+				[
+					0,
+					"사용목적"
+				],
+				[
+					0,
+					"데이터기준일자"
+				]
+			],
+			"column_types": [
+				"text",
+				"time",
+				"text",
+				"text",
+				"text",
+				"time"
+			],
+			"foreign_keys": [],
+			"primary_keys": []
+		}
+    ]
+}
