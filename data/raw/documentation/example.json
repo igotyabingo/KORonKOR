@@ -1,0 +1,75 @@
+{
+	"Dataset": {
+		"identifier": "TEXT_NL2SQL_2022",
+		"name": "자연어 기반 질의 검색 생성 데이터",
+		"src_path": "/dataSet/text/",
+		"label_path": "/dataSet/text/",
+		"category": 9,
+		"type": 0
+	},
+    "data": [
+        {
+			"source": "그랜드코리아레저(주)",
+			"db_id": "publicdata_culture_791",
+			"table_names_original": [
+				"GRANDKOR_CASINO_NET_S"
+			],
+			"table_names": [
+				"그랜드코리아레저 카지노순매출"
+			],
+			"column_names_original": [
+				[
+					-1,
+					"*"
+				],
+				[
+					0,
+					"BASE_DATE"
+				],
+				[
+					0,
+					"GANGNAM_COEX_BRANCH"
+				],
+				[
+					0,
+					"GANGBUK_HILTON_BRANCH"
+				],
+				[
+					0,
+					"BUSAN_LOTTE_BRANCH"
+				]
+			],
+			"column_names": [
+				[
+					-1,
+					"*"
+				],
+				[
+					0,
+					"기준일자"
+				],
+				[
+					0,
+					"강남코엑스점"
+				],
+				[
+					0,
+					"강북힐튼점"
+				],
+				[
+					0,
+					"부산롯데점"
+				]
+			],
+			"column_types": [
+				"text",
+				"time",
+				"number",
+				"number",
+				"number"
+			],
+			"foreign_keys": [],
+			"primary_keys": []
+		}
+    ]
+}

@@ -1,0 +1,39 @@
+{
+	"Dataset": {
+		"identifier": "TEXT_NL2SQL_2022",
+		"name": "자연어 기반 질의 검색 생성 데이터",
+		"src_path": "/dataSet/text/",
+		"label_path": "/dataSet/text/",
+		"category": 9,
+		"type": 0
+	},
+    "data": [
+        {
+			"db_id": "publicdata_culture_791",
+			"utterance_id": "Whn_12406",
+			"hardness": "medium",
+			"utterance_type": "BR02",
+			"query": "SELECT BASE_DATE FROM GRANDKOR_CASINO_NET_S WHERE GANGNAM_COEX_BRANCH > GANGBUK_HILTON_BRANCH OR BUSAN_LOTTE_BRANCH >= 8000000000 ORDER BY GANGNAM_COEX_BRANCH DESC",
+			"utterance": "강남 코엑스점보다 강북 힐튼점의 매출이 높거나 부산 롯데점이 8000000000원 이상인 날의 기준 일자를 강남 코엑스점의 매출이 높은 순서대로 찾아줘",
+			"values": [
+				{
+					"token": "8000000000",
+					"start": 34,
+					"column_index": 4
+				}
+			],
+			"cols": [
+				{
+					"token": "기준 일자",
+					"start": 53,
+					"column_index": 1
+				},
+				{
+					"token": "강남 코엑스점",
+					"start": 60,
+					"column_index": 2
+				}
+			]
+		}
+    ]
+}
