@@ -31,7 +31,7 @@ def match_table_info(doc_item, table_eng):
 
 def process_domain(domain_dir: Path):
     ddl_dir = domain_dir / "ddl"
-    doc_path = domain_dir / "documentation.json"
+    doc_path = domain_dir / f"publicdata_{domain_dir.name}_db_annotation.json"
 
     if not ddl_dir.exists() or not doc_path.exists():
         return

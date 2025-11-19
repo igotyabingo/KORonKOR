@@ -29,7 +29,7 @@ def run():
         if not domain_dir.is_dir():
             continue
 
-        raw_file = domain_dir / "query.json"
+        raw_file = domain_dir / f"TEXT_NL2SQL_label_publicdata_{domain_dir.name}.json"
         if not raw_file.exists():
             continue
 
