@@ -2,5 +2,5 @@
 
 publicdata*
 TEXT_NL2SQL*
-real_database.jsonl
-real_query.jsonl
+database.jsonl
+query.jsonl
