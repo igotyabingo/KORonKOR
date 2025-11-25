@@ -137,32 +137,12 @@ class VannaBase(ABC):
         self.log(title="LLM Response", message=llm_response)
 
         if 'intermediate_sql' in llm_response:
-            if not allow_llm_to_see_data:
-                return "The LLM is not allowed to see the data in your database. Your question requires database introspection to generate the necessary SQL. Please set allow_llm_to_see_data=True to enable this."
+            intermediate_sql = self.extract_sql(llm_response) or llm_response
+            return intermediate_sql  
 
-            if allow_llm_to_see_data:
-                intermediate_sql = self.extract_sql(llm_response)
-
-                try:
-                    self.log(title="Running Intermediate SQL", message=intermediate_sql)
-                    df = self.run_sql(intermediate_sql)
-
-                    prompt = self.get_sql_prompt(
-                        initial_prompt=initial_prompt,
-                        question=question,
-                        question_sql_list=question_sql_list,
-                        ddl_list=ddl_list,
-                        doc_list=doc_list+[f"The following is a pandas DataFrame with the results of the intermediate SQL query {intermediate_sql}: \n" + df.to_markdown()],
-                        **kwargs,
-                    )
-                    self.log(title="Final SQL Prompt", message=prompt)
-                    llm_response = self.submit_prompt(prompt, **kwargs)
-                    self.log(title="LLM Response", message=llm_response)
-                except Exception as e:
-                    return f"Error running intermediate SQL: {e}"
-
-
-        return self.extract_sql(llm_response)
+        sql = self.extract_sql(llm_response) or llm_response or ""
+        sql = sql.replace("\\_", "_").replace("\\", "")
+        return sql
 
     def extract_sql(self, llm_response: str) -> str:
         """

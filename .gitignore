@@ -4,3 +4,5 @@ publicdata*
 TEXT_NL2SQL*
 database.jsonl
 query.jsonl
+
+result/*

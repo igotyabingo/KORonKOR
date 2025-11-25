@@ -1,8 +1,10 @@
+import os
 import argparse
 import json
 from vanna.hf import Hf
 from vanna.chromadb.chromadb_vector import ChromaDB_VectorStore
-
+import sqlparse
+from dotenv import load_dotenv
 
 class MyVanna(ChromaDB_VectorStore, Hf):
     def __init__(self, config=None):
@@ -51,39 +53,50 @@ def load_database_jsonl(path):
 
     return ddls, docs
 
+def normalize_sql(sql: str):
+    if not sql:
+        return ""
+    return sqlparse.format(sql, keyword_case="lower", strip_comments=True, reindent=True).replace("\n", " ").replace("  ", " ").strip()
 
 def run_queries(vn, path, output_path):
-    with open(path, "r", encoding="utf-8") as f, open(output_path, "w", encoding="utf-8") as out:
-        for line in f:
+    with open(path, "r", encoding="utf-8") as f_in, \
+         open(output_path, "w", encoding="utf-8") as f_out:
+
+        for idx, line in enumerate(f_in):
             row = json.loads(line)
-
             q = row["query"]
-            gold_sql = row.get("sql")
+            gt_sql = row.get("sql", None)
 
-            answer = vn.ask(q)
+            predicted_sql = vn.generate_sql(q)
 
-            predicted_sql = answer.get("sql", None)
-            answer_text = answer.get("result", None)
-
-            is_correct = (predicted_sql == gold_sql)
-
-            out_row = {
-                **row,
+            out = {
+                "query_id": row["query_id"],
+                "query": q,
                 "predicted_sql": predicted_sql,
-                "is_correct": is_correct,
-                "answer_text": answer_text,
+                "gt_sql": gt_sql,
+                "match": normalize_sql(predicted_sql) == normalize_sql(gt_sql)
             }
 
-            out.write(json.dumps(out_row, ensure_ascii=False) + "\n")
+            f_out.write(json.dumps(out, ensure_ascii=False) + "\n")
+            print(f"{idx+1} query created")
+
+    print("Done.")
+
 
 
 def main():
+    load_dotenv()
+    token = os.getenv("HF_TOKEN")
+
+    if token is None:
+        raise ValueError("HF_TOKEN not found in .env")
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", required=True)
     parser.add_argument("--domain", required=True)
     args = parser.parse_args()
 
-    vn = MyVanna(config={"model_name_or_path": args.model})
+    vn = MyVanna(config={"model_name_or_path": args.model, 'allow_llm_to_see_data': True, 'hf_token': token})
 
     db_path = f"data/processed/{args.domain}/database.jsonl"
     ddls, docs = load_database_jsonl(db_path)
