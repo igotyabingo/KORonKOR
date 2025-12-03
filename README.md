@@ -154,7 +154,7 @@ I evaluated the models on two domains:
 
 
 ## 📚 Citation
-Citation: This project uses code from the Vanna framework, available at: https://github.com/vanna-ai/vanna
+This project uses code from the Vanna framework, available at: https://github.com/vanna-ai/vanna
 
 ---
 Last Updated: Dec 3, 2025
